@@ -34,10 +34,10 @@ $string['mindmaapfieldset'] = 'תצוגה חזותית';
 $string['type'] = 'סוג';
 $string['pluginadministration'] = 'ניהול מפות חשיבה';
 
-$string['mindmaap_token'] = 'מפות חשיבה טוקן';
-$string['mindmaap_token_desc'] = 'ניתן לראות באתר <a href="https://mindmaap.com">MindMaap</a>';
+$string['mindmaap_token'] = 'אסימון לשירות מפות חשיבה';
+$string['mindmaap_token_desc'] = 'לקבל גישות נא לגלוש באתר <a href="https://mindmaap.com">MindMaap</a>';
 $string['mindmaap_url'] = 'קישור לשירות מפות חשיבה';
-$string['mindmaap_url_desc'] = 'יתן לראות באתר <a href="https://mindmaap.com">MindMaap</a>';
+$string['mindmaap_url_desc'] = 'לקבל גישות נא לגלוש באתר<a href="https://mindmaap.com">MindMaap</a>';
 
 $string['openpopup'] = 'התחל';
 $string['newwindow'] = 'התחל';
@@ -45,8 +45,8 @@ $string['directlink'] = 'התחל';
 $string['modulenameplural'] = 'mindmaaps';
 
 $string['type_iframe'] = 'בתוך הקורס';
-$string['type_window'] = 'טאב חדש';
-$string['type_popup'] = 'חלון ידש';
+$string['type_window'] = 'חלון חדש';
+$string['type_popup'] = 'חלון צף';
 $string['type_link'] = 'קישור';
 
 $string['mindmaap:addinstance'] = 'פפות חשיבה להוסיף רכיב';
