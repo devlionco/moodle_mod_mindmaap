@@ -1,0 +1,18 @@
+#page-mod-mindmaap-view .mindmaap-embed {
+    width: -webkit-fill-available;
+    height: 600px;
+}
+
+#page-mod-mindmaap-view iframe {
+    width: -webkit-fill-available;
+    height: 600px;
+}
+
+#page-mod-mindmaap-view div[role=main] {
+    display: flex;
+}
+
+#page-mod-mindmaap-view a.mindmaapbutton {
+    display: block;
+    margin: 50px auto;
+}
