@@ -62,6 +62,7 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
 $token = get_config('mod_mindmaap', 'token');
+$token = get_config('mod_mindmaap', 'token');
 $url = get_config('mod_mindmaap', 'url');
 $mindmaap = new mindmaap($token, $url);
 $data = [
@@ -71,8 +72,10 @@ $data = [
         'additional_data' => [$moduleinstance->activityid],
 ];
 
+
 // Create mindmaap.
 $user = $mindmaap->registeruser($data['email'], $data['first_name'], $data['last_name'], $data['additional_data']);
+
 $url = $user['url'] . "&lang=" . current_language();
 $sessionurl = $mindmaap->getsessionurl($user['url_param']);
 

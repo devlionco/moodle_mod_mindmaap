@@ -36,15 +36,18 @@ class mindmaap {
     /**
      * @param string $name
      * @param string $description
-     * @param array $additionaldata - should contain activityId data
+     * @param array $additional_data - should contain activityId data
      *
      * Example: $additionaldata = [766]; 766 - activity_id
      *
      * @return array
      */
     public function createpage(string $name, string $description, array $additionaldata = []) {
-        $response = $this->request($this->baseurl . 'mindmap/create', compact('name', 'description', 'additional_data'));
+        $response = $this->request($this->baseurl . 'mindmap/create',
+                ['name' => $name, 'description' => $description, 'additional_data' => $additionaldata]);
 
+        //print_r($response);
+        //exit;
         if (!$response || !$response['status']) {
             // Do additional logging if nothing created or error happend.
             return $response;
@@ -73,7 +76,7 @@ class mindmaap {
                 ]
         );
 
-        if (!$response || !$response['status']) {
+        if (empty($response) || empty($response['status'])) {
             // Do additional logging if nothing created or error happend.
             return $response;
         }
@@ -85,14 +88,14 @@ class mindmaap {
      * @param string $email
      * @param string $firstname
      * @param string $lastname
-     * @param array $additionaldata - should contains activity_id
+     * @param array $additional_data - should contains activity_id
      *
-     * Example: $additionaldata = [766]; 766 - activity_id
+     * Example: $additional_data = [766]; 766 - activity_id
      *
      * @return string
      */
-    public function geturlforuser(string $email, string $firstname, string $lastname, array $additionaldata = []) {
-        $user = $this->registeruser($email, $firstname, $lastname, $additionaldata);
+    public function geturlforuser(string $email, string $firstname, string $lastname, array $additional_data = []) {
+        $user = $this->registeruser($email, $firstname, $lastname, $additional_data);
 
         return $user['url'];
     }
@@ -113,9 +116,10 @@ class mindmaap {
      * @return array
      */
     private function request(string $url, array $body): array {
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
+        //curl_setopt($ch, CURLOPT_TIMEOUT, 10000);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body, '', '&')); // Post Fields.
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
