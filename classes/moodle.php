@@ -53,7 +53,7 @@ class mindmaap {
             return $response;
         }
 
-        return $response['mindmap'];
+        return $response['data'];
     }
 
     /**
@@ -81,7 +81,7 @@ class mindmaap {
             return $response;
         }
 
-        return $response['mindmap'];
+        return $response['data'];
     }
 
     /**
@@ -105,8 +105,8 @@ class mindmaap {
      *
      * @return string
      */
-    public function getsessionurl(string $urlparam) {
-        return $this->baseurl . "users/set-session/?token={$this->getcustomertoken()}&url_param={$urlparam}";
+    public function getsessionurl(string $urlparam, string $mindmap) {
+        return $this->baseurl . "users/set-session/?token={$this->getcustomertoken()}&url_param={$urlparam}&map={$mindmap}";
     }
 
     /**
