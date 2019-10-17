@@ -53,7 +53,7 @@ class mindmaap {
             return $response;
         }
 
-        return $response['mindmap']['url'];
+        return $response['mindmap'];
     }
 
     /**
