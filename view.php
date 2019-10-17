@@ -77,7 +77,7 @@ $data = [
 $user = $mindmaap->registeruser($data['email'], $data['first_name'], $data['last_name'], $data['additional_data']);
 
 $url = $user['url'] . "&lang=" . current_language();
-$sessionurl = $mindmaap->getsessionurl($user['url_param']);
+$sessionurl = $mindmaap->getsessionurl($user['url_param'], $user['mindmap']['token']);
 
 $o = '';
 $session = '<iframe src="' . $sessionurl . '" style="display: none;"></iframe>';
