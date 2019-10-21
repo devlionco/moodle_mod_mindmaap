@@ -25,8 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'Mind Maap';
-$string['pluginname'] = 'Mind Maap';
+$string['modulename'] = 'Mind Map';
+$string['pluginname'] = 'Mind Map';
 $string['mindmaapname'] = 'Name';
 $string['mindmaapname_help'] = 'Activity name';
 $string['mindmaapsettings'] = 'Activity settings';
@@ -39,15 +39,15 @@ $string['mindmaap_token_desc'] = 'Get token on site <a href="https://mindmaap.co
 $string['mindmaap_url'] = 'Mind Map Service Url';
 $string['mindmaap_url_desc'] = 'Get url on site <a href="https://mindmaap.com">MindMaap</a>';
 
-$string['openpopup'] = 'Star Mind Maap';
-$string['newwindow'] = 'Star Mind Maap';
-$string['directlink'] = 'Star Mind Maap';
-$string['modulenameplural'] = 'mindmaaps';
+$string['openpopup'] = 'Star Mind Map';
+$string['newwindow'] = 'Star Mind Map';
+$string['directlink'] = 'Star Mind Map';
+$string['modulenameplural'] = 'mindmaps';
 
 $string['type_iframe'] = 'Iframe';
 $string['type_window'] = 'New Window';
 $string['type_popup'] = 'Pop Up';
 $string['type_link'] = 'Link';
 
-$string['mindmaap:addinstance'] = 'Mind Maap add instance';
-$string['mindmaap:view'] = 'Mind Maap view';
+$string['mindmaap:addinstance'] = 'Mind Map add instance';
+$string['mindmaap:view'] = 'Mind Map view';

@@ -72,7 +72,6 @@ $data = [
         'additional_data' => [$moduleinstance->activityid],
 ];
 
-
 // Create mindmaap.
 $user = $mindmaap->registeruser($data['email'], $data['first_name'], $data['last_name'], $data['additional_data']);
 
