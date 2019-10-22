@@ -45,7 +45,7 @@ class mindmaap {
     public function createpage(string $name, string $description, array $additionaldata = []) {
         $response = $this->request($this->baseurl . 'mindmap/create',
                 ['name' => $name, 'description' => $description, 'additional_data' => $additionaldata]);
-        
+
         if (!$response || !$response['status']) {
             // Do additional logging if nothing created or error happend.
             return $response;
@@ -68,7 +68,7 @@ class mindmaap {
         $response = $this->request(
                 $this->baseurl . 'users/register', [
                         'email' => $email,
-                        'first_name' => $firstname,
+                        'first_name' => slug($firstname),
                         'last_name' => $lastname,
                         'additional_data' => $additionaldata
                 ]

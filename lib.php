@@ -61,7 +61,7 @@ function mindmaap_add_instance($moduleinstance, $mform = null) {
     $mindmaap = new mindmaap($token, $url);
 
     $data = [
-            'name' => $moduleinstance->name,
+            'name' => slug($moduleinstance->name),
             'description' => $moduleinstance->name,
             'additional_data' => [$moduleinstance->coursemodule],
     ];
