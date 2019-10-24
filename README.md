@@ -11,7 +11,7 @@ Purpose
 This plugin allow to teachers share: Courses, Activity/Resource, Topic/Module to other teachers.
 1. Teacher can add Mind Map activity to his course.
 2. Students can view Mind Map services.
-[view](https://mindmaap.com‎)
+[view](https://mindmaap.com)
 
 
 Instalations
