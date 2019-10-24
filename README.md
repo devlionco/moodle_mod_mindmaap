@@ -6,12 +6,12 @@ The "master" branch is no longer compatible with Moodle 3.6 or latter.
 
 Purpose
 -------
-![Mind Maap Moodle Settings](https://blog.devlion.co/wp-content/uploads/image-17.png) 
+![Mind Map Moodle Settings](https://mindmaap.com/wp-content/uploads/2019/10/Mindmaap_Devlion-2.png) 
 
 This plugin allow to teachers share: Courses, Activity/Resource, Topic/Module to other teachers.
 1. Teacher can add Mind Map activity to his course.
 2. Students can view Mind Map services.
-[view](https://mindmaap.com/wp-content/uploads/2019/10/Mindmaap_Devlion-2.png‎)
+[view](https://mindmaap.com‎)
 
 
 Instalations
