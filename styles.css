@@ -3,9 +3,10 @@
     height: 600px;
 }
 
-#page-mod-mindmaap-view iframe {
-    width: -webkit-fill-available;
+#page-mod-mindmaap-view #mindmapiframe {
     height: 600px;
+    width: 100%;
+    border: 0px;
 }
 
 #page-mod-mindmaap-view div[role=main] {

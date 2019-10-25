@@ -79,14 +79,14 @@ $url = $user['url'] . "&lang=" . current_language();
 $sessionurl = $mindmaap->getsessionurl($user['url_param'], $user['mindmap']['token']);
 
 $o = '';
-$session = '<iframe src="' . $sessionurl . '" style="display: none;"></iframe>';
+$session = '<iframe id="mindmapsessioniframe" src="' . $sessionurl . '" style="width:0px;border:0px;height: 0px;"></iframe>';
 switch ($moduleinstance->type) {
     case 'iframe':
-        $o .= '<iframe src="' . $url . '" align="left"></iframe>';
+        $o .= '<iframe id="mindmapiframe" src="" ></iframe>>
+               <script> window.onload = function(){document.getElementById(\'mindmapiframe\').src="' . $url . '"}; </script>';
         break;
     case 'popup':
-        $PAGE->requires->js_call_amd('mod_mindmaap/popup', 'init', [$url]);
-        $PAGE->requires->css('/mod/mindmaap/styles.css');
+        $PAGE->requires->js_call_amd('mod_mindmaap/popup', 'init', [$url, format_string($moduleinstance->name)]);
         $o .= '<a href="#" class="btn btn-primary mindmaapbutton" id="mindmaapopen">' .
                 get_string('openpopup', 'mod_mindmaap') . '</a>';
         break;
@@ -95,14 +95,12 @@ switch ($moduleinstance->type) {
                 get_string('newwindow', 'mod_mindmaap') . '</a>';
         break;
     case 'link':
-        $o .= '<script> setInterval(function(){ window.location.href="' . $url . '"},1000); </script>';
+        $o .= '<script> window.setInterval(function(){ window.location.href="' . $url . '"},2000); </script>';
         break;
     default:
         break;
 }
-
+$PAGE->requires->css('/mod/mindmaap/styles.css');
 echo $OUTPUT->header();
-echo $OUTPUT->heading(format_string($moduleinstance->name), 3, 'main');
-echo $session;
-echo $o;
+echo $OUTPUT->box($session . $o, "col-12");
 echo $OUTPUT->footer();

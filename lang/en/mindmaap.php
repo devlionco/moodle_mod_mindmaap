@@ -39,9 +39,9 @@ $string['mindmaap_token_desc'] = 'Get token on site <a href="https://mindmaap.co
 $string['mindmaap_url'] = 'Mind Map Service Url';
 $string['mindmaap_url_desc'] = 'Get url on site <a href="https://mindmaap.com">MindMaap</a>';
 
-$string['openpopup'] = 'Star Mind Map';
-$string['newwindow'] = 'Star Mind Map';
-$string['directlink'] = 'Star Mind Map';
+$string['openpopup'] = 'Start Mind Map';
+$string['newwindow'] = 'Start Mind Map';
+$string['directlink'] = 'Start Mind Map';
 $string['modulenameplural'] = 'mindmaps';
 
 $string['type_iframe'] = 'Iframe';
