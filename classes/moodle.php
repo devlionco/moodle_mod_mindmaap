@@ -36,7 +36,7 @@ class mindmaap {
     /**
      * @param string $name
      * @param string $description
-     * @param array $additional_data - should contain activityId data
+     * @param array $additionaldata - should contain activityId data
      *
      * Example: $additionaldata = [766]; 766 - activity_id
      *
@@ -86,14 +86,14 @@ class mindmaap {
      * @param string $email
      * @param string $firstname
      * @param string $lastname
-     * @param array $additional_data - should contains activity_id
+     * @param array $additionaldata - should contains activity_id
      *
-     * Example: $additional_data = [766]; 766 - activity_id
+     * Example: $additionaldata = [766]; 766 - activity_id
      *
      * @return string
      */
-    public function geturlforuser(string $email, string $firstname, string $lastname, array $additional_data = []) {
-        $user = $this->registeruser($email, $firstname, $lastname, $additional_data);
+    public function geturlforuser(string $email, string $firstname, string $lastname, array $additionaldata = []) {
+        $user = $this->registeruser($email, $firstname, $lastname, $additionaldata);
 
         return $user['url'];
     }
@@ -117,7 +117,6 @@ class mindmaap {
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        //curl_setopt($ch, CURLOPT_TIMEOUT, 10000);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body, '', '&')); // Post Fields.
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

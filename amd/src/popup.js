@@ -14,7 +14,6 @@ define([
                     body: '<embed class="mindmaap-embed" src=' + url + ' />',
                     large: true
                 }).then(function (modal) {
-                    modal.setSaveButtonText("Delete");
                     var root = modal.getRoot();
                     root.on(ModalEvents.save, function () {
                     });

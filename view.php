@@ -87,12 +87,13 @@ switch ($moduleinstance->type) {
         break;
     case 'popup':
         $PAGE->requires->js_call_amd('mod_mindmaap/popup', 'init', [$url, format_string($moduleinstance->name)]);
-        $o .= '<a href="#" class="btn btn-primary mindmaapbutton" id="mindmaapopen">' .
-                get_string('openpopup', 'mod_mindmaap') . '</a>';
+        $o .= \html_writer::link("#", get_string('openpopup', 'mod_mindmaap'),
+                ["id" => "mindmaapopen", "class" => "btn btn-primary mindmaapbutton", "rel" => "noopener noreferrer"]);
         break;
     case 'window':
-        $o .= '<a href="' . $url . '" class="btn btn-primary mindmaapbutton" target="_blank" rel="noopener noreferrer">' .
-                get_string('newwindow', 'mod_mindmaap') . '</a>';
+        $o .= \html_writer::link($url, get_string('newwindow', 'mod_mindmaap'),
+                ["id" => "mindmaapopen", "class" => "btn btn-primary mindmaapbutton", "target" => "_blank",
+                        "rel" => "noopener noreferrer"]);
         break;
     case 'link':
         $o .= '<script> window.setInterval(function(){ window.location.href="' . $url . '"},2000); </script>';
@@ -102,5 +103,8 @@ switch ($moduleinstance->type) {
 }
 $PAGE->requires->css('/mod/mindmaap/styles.css');
 echo $OUTPUT->header();
-echo $OUTPUT->box($session . $o, "col-12");
+echo $OUTPUT->box_start('mod_introbox container', 'mindmapintro');
+echo format_module_intro('mindmaap', $moduleinstance, $cm->id);
+echo \html_writer::div($session . $o);
+echo $OUTPUT->box_end();
 echo $OUTPUT->footer();
