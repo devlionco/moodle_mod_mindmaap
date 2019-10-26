@@ -103,8 +103,14 @@ switch ($moduleinstance->type) {
 }
 $PAGE->requires->css('/mod/mindmaap/styles.css');
 echo $OUTPUT->header();
-echo $OUTPUT->box_start('mod_introbox container', 'mindmapintro');
-echo format_module_intro('mindmaap', $moduleinstance, $cm->id);
-echo \html_writer::div($session . $o);
-echo $OUTPUT->box_end();
+echo \html_writer::start_div('col-12');
+if (trim(strip_tags($moduleinstance->intro))) {
+    echo $OUTPUT->box_start('mod_introbox container', 'mindmapintro');
+    echo format_module_intro('mindmaap', $moduleinstance, $cm->id);
+    echo $OUTPUT->box_end();
+}
+echo \html_writer::start_div('row');
+echo $session . $o;
+echo \html_writer::end_div();
+echo \html_writer::end_div();
 echo $OUTPUT->footer();
