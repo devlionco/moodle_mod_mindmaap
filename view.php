@@ -82,7 +82,7 @@ $o = '';
 $session = '<iframe id="mindmapsessioniframe" src="' . $sessionurl . '" style="width:0px;border:0px;height: 0px;"></iframe>';
 switch ($moduleinstance->type) {
     case 'iframe':
-        $o .= '<iframe id="mindmapiframe" src="" ></iframe>>
+        $o .= '<iframe id="mindmapiframe" src="" ></iframe>
                <script> window.onload = function(){document.getElementById(\'mindmapiframe\').src="' . $url . '"}; </script>';
         break;
     case 'popup':
