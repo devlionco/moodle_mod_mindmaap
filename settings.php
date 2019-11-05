@@ -25,9 +25,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $settings->add(new admin_setting_configtext('mod_mindmaap/token',
-        get_string('mindmaap_token', 'mod_mindmaap'), get_string('mindmaap_token_desc', 'mod_mindmaap'), '', PARAM_TEXT));
+        get_string('mindmaap_token', 'mod_mindmaap'), get_string('mindmaap_token_desc', 'mod_mindmaap'), 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiY2xpZW50MkBkZXZsaW9uLmNvIiwiZmlyc3RfbmFtZSI6IkNsaWVudDIiLCJsYXN0X25hbWUiOiJDbGllbnQifSwiaWF0IjoxNTcxMjk4Nzc4LCJleHAiOjMzMTI4MjI0Nzc4fQ.RqWY0fSjbSWHyTyP_OYDuK5vMNFOqvbdWqZDWhOnyuU', PARAM_TEXT));
 
 $settings->add(new admin_setting_configtext('mod_mindmaap/url',
-        get_string('mindmaap_url', 'mod_mindmaap'), get_string('mindmaap_url_desc', 'mod_mindmaap'), 'https://dev.mindmaap.com/',
+        get_string('mindmaap_url', 'mod_mindmaap'), get_string('mindmaap_url_desc', 'mod_mindmaap'), 'https://app.mindmaap.com/',
         PARAM_TEXT));
 
