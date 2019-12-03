@@ -16,10 +16,12 @@ This plugin allow to teachers share: Courses, Activity/Resource, Topic/Module to
 
 Instalations
 -------
+1.Validate that youre moodle instance has permission to acces to server app.mindmaap.com via CURL
 
-1.Set token:
+2.Set token:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiY2xpZW50MkBkZXZsaW9uLmNvIiwiZmlyc3RfbmFtZSI6IkNsaWVudDIiLCJsYXN0X25hbWUiOiJDbGllbnQifSwiaWF0IjoxNTcxMjk4Nzc4LCJleHAiOjMzMTI4MjI0Nzc4fQ.RqWY0fSjbSWHyTyP_OYDuK5vMNFOqvbdWqZDWhOnyuU
-2. Set Service Url:
+
+3. Set Service Url:
 https://app.mindmaap.com/
 ![Mind Maap Moodle Settings](https://blog.devlion.co/wp-content/uploads/image-17.png) 
 3. Add new activity 
