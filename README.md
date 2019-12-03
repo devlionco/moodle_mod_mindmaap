@@ -18,9 +18,9 @@ Instalations
 -------
 
 1.Set token:
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGV2bGlvbkBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiZGV2bGlvbiIsImxhc3RfbmFtZSI6InRlc3QifSwiaWF0IjoxNTY1MjE3MDY5LCJleHAiOjE5MjUyMTcwNjl9.hFzXOMRVVhVtOTdpX1I7UZRwaoQljQSlnVCFSfkDiU8
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiY2xpZW50MkBkZXZsaW9uLmNvIiwiZmlyc3RfbmFtZSI6IkNsaWVudDIiLCJsYXN0X25hbWUiOiJDbGllbnQifSwiaWF0IjoxNTcxMjk4Nzc4LCJleHAiOjMzMTI4MjI0Nzc4fQ.RqWY0fSjbSWHyTyP_OYDuK5vMNFOqvbdWqZDWhOnyuU
 2. Set Service Url:
-https://dev.mindmaap.com/
+https://app.mindmaap.com/
 ![Mind Maap Moodle Settings](https://blog.devlion.co/wp-content/uploads/image-17.png) 
 3. Add new activity 
 
