@@ -15,17 +15,37 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Renderer class for mindmaap module
  *
  * @package     mod_mindmaap
  * @copyright   2019 Devlion <info@devlion.co>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace mod_mindmaap\output;
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_mindmaap';
-$plugin->release = '0.1.0';
-$plugin->version = 2019080812;
-$plugin->requires = 2018120300;
-$plugin->maturity = MATURITY_ALPHA;
+use plugin_renderer_base;
+
+/**
+ * Renderer class for mindmaap module
+ *
+ * @package     mod_mindmaap
+ * @copyright   2019 Devlion <info@devlion.co>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class renderer extends plugin_renderer_base {
+
+    /**
+     * Defer to template.
+     *
+     * @param manage_competency_frameworks_page $page
+     *
+     * @return string html for the page
+     */
+    public function render_view_page(view_page $page) {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('mod_mindmaap/view_page', $data);
+    }
+}

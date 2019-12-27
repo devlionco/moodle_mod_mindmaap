@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Administration settings definitions for the quiz module.
+ * Administration settings definitions for the mod_mindmaap module.
  *
  * @package   mod_mindmaap
- * @copyright 2010 Petr Skoda
+ * @copyright   2019 Devlion <info@devlion.co>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

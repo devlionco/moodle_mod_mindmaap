@@ -1,4 +1,3 @@
-<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,16 +14,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Private url module utility functions
+ * iframe js
  *
  * @package    mod_mindmaap
- * @copyright  2009 Petr Skoda  {@link http://skodak.org}
+ * @copyright   2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+define([
+    "jquery",
+], function ($) {
+    "use strict";
 
-function slug($z) {
-    $z = str_replace('/', ' ', $z);
-    return trim($z);
-}
+    return {
+        init: function (url) {
+            $(document).ready(function () {
+                $('#mindmapiframe').attr('src', url);
+            });
+        }
+    };
+});
