@@ -15,17 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Privacy Subsystem implementation for mod_mindmaap.
  *
  * @package     mod_mindmaap
  * @copyright   2019 Devlion <info@devlion.co>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace mod_mindmaap\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_mindmaap';
-$plugin->release = '0.1.0';
-$plugin->version = 2019080812;
-$plugin->requires = 2018120300;
-$plugin->maturity = MATURITY_ALPHA;
+/**
+ * The mod_mindmaap module does not store any data.
+ *
+ * @package     mod_mindmaap
+ * @copyright   2019 Devlion <info@devlion.co>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

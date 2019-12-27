@@ -24,7 +24,6 @@
 
 require(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/lib.php');
-require_once(__DIR__ . '/classes/moodle.php');
 
 // Course_module ID, or.
 $id = optional_param('id', 0, PARAM_INT);
@@ -41,7 +40,7 @@ if ($id) {
     $course = $DB->get_record('course', array('id' => $moduleinstance->course), '*', MUST_EXIST);
     $cm = get_coursemodule_from_instance('mindmaap', $moduleinstance->id, $course->id, false, MUST_EXIST);
 } else {
-    print_error(get_string('missingidandcmid', mod_mindmaap));
+    print_error(get_string('missingidandcmid', 'mod_mindmaap'));
 }
 
 require_login($course, true, $cm);
@@ -61,56 +60,11 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
-$token = get_config('mod_mindmaap', 'token');
-$token = get_config('mod_mindmaap', 'token');
-$url = get_config('mod_mindmaap', 'url');
-$mindmaap = new mindmaap($token, $url);
-$data = [
-        'email' => $USER->email,
-        'first_name' => $USER->firstname,
-        'last_name' => $USER->lastname,
-        'additional_data' => [$moduleinstance->activityid],
-];
-
-// Create mindmaap.
-$user = $mindmaap->registeruser($data['email'], $data['first_name'], $data['last_name'], $data['additional_data']);
-
-$url = $user['url'] . "&lang=" . current_language();
-$sessionurl = $mindmaap->getsessionurl($user['url_param'], $user['mindmap']['token']);
-
-$o = '';
-$session = '<iframe id="mindmapsessioniframe" src="' . $sessionurl . '" style="width:0px;border:0px;height: 0px;"></iframe>';
-switch ($moduleinstance->type) {
-    case 'iframe':
-        $o .= '<iframe id="mindmapiframe" src="" ></iframe>
-               <script> window.onload = function(){document.getElementById(\'mindmapiframe\').src="' . $url . '"}; </script>';
-        break;
-    case 'popup':
-        $PAGE->requires->js_call_amd('mod_mindmaap/popup', 'init', [$url, format_string($moduleinstance->name)]);
-        $o .= \html_writer::link("#", get_string('openpopup', 'mod_mindmaap'),
-                ["id" => "mindmaapopen", "class" => "btn btn-primary mindmaapbutton", "rel" => "noopener noreferrer"]);
-        break;
-    case 'window':
-        $o .= \html_writer::link($url, get_string('newwindow', 'mod_mindmaap'),
-                ["id" => "mindmaapopen", "class" => "btn btn-primary mindmaapbutton", "target" => "_blank",
-                        "rel" => "noopener noreferrer"]);
-        break;
-    case 'link':
-        $o .= '<script> window.setInterval(function(){ window.location.href="' . $url . '"},2000); </script>';
-        break;
-    default:
-        break;
-}
-$PAGE->requires->css('/mod/mindmaap/styles.css');
+$PAGE->requires->css('/mod/mindmaap/css/styles.css');
 echo $OUTPUT->header();
-echo \html_writer::start_div('col-12');
-if (trim(strip_tags($moduleinstance->intro))) {
-    echo $OUTPUT->box_start('mod_introbox container', 'mindmapintro');
-    echo format_module_intro('mindmaap', $moduleinstance, $cm->id);
-    echo $OUTPUT->box_end();
-}
-echo \html_writer::start_div('row');
-echo $session . $o;
-echo \html_writer::end_div();
-echo \html_writer::end_div();
+
+$output = $PAGE->get_renderer('mod_mindmaap');
+$page = new \mod_mindmaap\output\view_page($moduleinstance, $cm);
+echo $output->render($page);
+
 echo $OUTPUT->footer();

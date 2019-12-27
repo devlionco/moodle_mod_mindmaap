@@ -15,21 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Forum event handler definition.
+ * The mod_mindmaap instance list viewed event.
  *
- * @package     mod_mindmaap
+ * @package    mod_mindmaap
  * @copyright   2019 Devlion <info@devlion.co>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+namespace mod_mindmaap\event;
+defined('MOODLE_INTERNAL') || die();
 
-// List of observers.
-$observers = array(
+/**
+ * The mod_mindmaap instance list viewed event class.
+ *
+ * @package    mod_mindmaap
+ * @copyright   2019 Devlion <info@devlion.co>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed
+{
 
-        array(
-                'eventname' => '\core\event\course_module_viewed',
-                'callback' => 'mod_mindmaap_observer::course_module_viewed',
-        ),
-
-);
+}

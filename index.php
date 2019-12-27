@@ -50,6 +50,8 @@ $modulenameplural = get_string('modulenameplural', 'mod_mindmaap');
 echo $OUTPUT->heading($modulenameplural);
 
 $mindmaaps = get_all_instances_in_course('mindmaap', $course);
+$strname = get_string("name");
+$usesections = course_format_uses_sections($course->format);
 
 if (empty($mindmaaps)) {
     notice(get_string('nonewmodules', 'mod_mindmaap'), new moodle_url('/course/view.php', array('id' => $course->id)));
@@ -58,15 +60,12 @@ if (empty($mindmaaps)) {
 $table = new html_table();
 $table->attributes['class'] = 'generaltable mod_index';
 
-if ($course->format == 'weeks') {
-    $table->head = array(get_string('week'), get_string('name'));
-    $table->align = array('center', 'left');
-} else if ($course->format == 'topics') {
-    $table->head = array(get_string('topic'), get_string('name'));
-    $table->align = array('center', 'left', 'left', 'left');
+if ($usesections) {
+    $strsectionname = get_string('sectionname', 'format_'.$course->format);
+    $table->head  = array ($strsectionname, $strname);
+    $table->align = array ("center", "left");
 } else {
-    $table->head = array(get_string('name'));
-    $table->align = array('left', 'left', 'left');
+    $table->head  = array ($strname);
 }
 
 foreach ($mindmaaps as $mindmaap) {
@@ -81,10 +80,10 @@ foreach ($mindmaaps as $mindmaap) {
                 format_string($mindmaap->name, true));
     }
 
-    if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array($mindmaap->section, $link);
+    if ($usesections) {
+        $table->data[] = array (get_section_name($course, $mindmaap->section), $link);
     } else {
-        $table->data[] = array($link);
+        $table->data[] = array ($link);
     }
 }
 

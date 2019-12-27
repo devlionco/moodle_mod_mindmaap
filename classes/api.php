@@ -21,9 +21,12 @@
  * @copyright   2019 Devlion <info@devlion.co>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace mod_mindmaap;
+
 defined('MOODLE_INTERNAL') || die();
 
-class mindmaap {
+class api {
 
     private $baseurl;
     private $customertoken;
@@ -43,13 +46,14 @@ class mindmaap {
      * @return array
      */
     public function createpage(string $name, string $description, array $additionaldata = []) {
-        $response = $this->request($this->baseurl . 'mindmap/create',
-                ['name' => $name, 'description' => $description, 'additional_data' => $additionaldata]);
-
-        if (!$response || !$response['status']) {
-            // Do additional logging if nothing created or error happend.
-            return $response;
-        }
+        $response = $this->request(
+            $this->baseurl . 'mindmap/create',
+                [
+                    'name' => $name,
+                    'description' => $description,
+                    'additional_data' => $additionaldata
+                ]
+        );
 
         return $response['data'];
     }
@@ -66,18 +70,14 @@ class mindmaap {
      */
     public function registeruser(string $email, string $firstname, string $lastname, array $additionaldata = []) {
         $response = $this->request(
-                $this->baseurl . 'users/register', [
-                        'email' => $email,
-                        'first_name' => slug($firstname),
-                        'last_name' => $lastname,
-                        'additional_data' => $additionaldata
+                $this->baseurl . 'users/register',
+                [
+                    'email' => $email,
+                    'first_name' => static::slug($firstname),
+                    'last_name' => $lastname,
+                    'additional_data' => $additionaldata
                 ]
         );
-
-        if (empty($response) || empty($response['status'])) {
-            // Do additional logging if nothing created or error happend.
-            return $response;
-        }
 
         return $response['data'];
     }
@@ -115,32 +115,21 @@ class mindmaap {
      */
     private function request(string $url, array $body): array {
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body, '', '&')); // Post Fields.
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $curl = new \curl();
 
         $headers = [
-                "Authorization: Bearer {$this->getcustomertoken()}",
-                'Accept: application/json',
-                'Content-Type: application/x-www-form-urlencoded',
+            "Authorization: Bearer {$this->getcustomertoken()}",
+            'Accept: application/json',
+            'Content-Type: application/x-www-form-urlencoded',
         ];
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $curl->setHeader($headers);
 
-        $response = curl_exec($ch);
+        $response = $curl->post($url, http_build_query($body, '', '&'));
 
-        if (curl_errno($ch)) {
-            // Add logg error.
-            echo 'Error:' . curl_error($ch);
-
-            return [];
+        if ($curl->error) {
+            throw new \moodle_exception('curlerror', 'mod_mindmaap', $curl->error);
         }
-
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        curl_close($ch);
 
         $decoded = json_decode($response, true);
 
@@ -148,16 +137,23 @@ class mindmaap {
     }
 
     /**
-     * @param $token
-     */
-    public function setcustomertoken($token) {
-        $this->customertoken = $token;
-    }
-
-    /**
+     * Function to get private customer token
+     *
      * @return string
      */
     public function getcustomertoken() {
+
         return $this->customertoken;
+    }
+
+    /**
+     * Function to replace slashes with spaces
+     *
+     * @param $str
+     * @return string
+     */
+    public static function slug(string $str) {
+
+        return trim(str_replace('/', ' ', $str));
     }
 }

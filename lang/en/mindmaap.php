@@ -43,11 +43,17 @@ $string['openpopup'] = 'Start Mind Map';
 $string['newwindow'] = 'Start Mind Map';
 $string['directlink'] = 'Start Mind Map';
 $string['modulenameplural'] = 'mindmaps';
+$string['nonewmodules'] = 'No new modules';
 
 $string['type_iframe'] = 'Iframe';
 $string['type_window'] = 'New Window';
 $string['type_popup'] = 'Pop Up';
 $string['type_link'] = 'Link';
+
+$string['curlerror'] = 'Error occured during server request: {$a}';
+$string['missingidandcmid'] = 'id or cmid missing';
+
+$string['privacy:metadata'] = 'The mod_mindmaap plugin does not store any personal data.';
 
 $string['mindmaap:addinstance'] = 'Mind Map add instance';
 $string['mindmaap:view'] = 'Mind Map view';

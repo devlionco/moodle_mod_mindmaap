@@ -24,8 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once(__DIR__ . '/classes/moodle.php');
-require_once(__DIR__ . '/locallib.php');
+use \mod_mindmaap\api;
 
 /**
  * Return if the plugin supports $feature.
@@ -36,7 +35,8 @@ require_once(__DIR__ . '/locallib.php');
 function mindmaap_supports($feature) {
     switch ($feature) {
         case FEATURE_MOD_INTRO:
-            return true;
+        case FEATURE_BACKUP_MOODLE2:
+        return true;
         default:
             return null;
     }
@@ -54,32 +54,32 @@ function mindmaap_supports($feature) {
  * @return int The id of the newly inserted record.
  */
 function mindmaap_add_instance($moduleinstance, $mform = null) {
-    global $DB;
-    $token = get_config('mod_mindmaap', 'token');
-    $url = get_config('mod_mindmaap', 'url');
 
-    $mindmaap = new mindmaap($token, $url);
+    $config = get_config('mod_mindmaap');
+
+    $api = new api($config->token, $config->url);
 
     $data = [
-            'name' => slug($moduleinstance->name),
+            'name' => api::slug($moduleinstance->name),
             'description' => $moduleinstance->name,
             'additional_data' => [$moduleinstance->coursemodule],
     ];
 
     // Create mindmaap.
-    $resp = $mindmaap->createpage($data['name'], $data['description'], $data['additional_data']);
+    $api->createpage($data['name'], $data['description'], $data['additional_data']);
 
-    if (isset($resp['status'])) {
-        // Do additional logging if nothing created or error happend.
-        return new moodle_exception('', '', '', $resp);
-    }
+    $record = (object) [
+        'course' => $moduleinstance->course,
+        'name' => $moduleinstance->name,
+        'type' => $moduleinstance->type,
+        'intro' => $moduleinstance->intro ?? '',
+        'introformat' => $moduleinstance->introformat ?? 0,
+    ];
 
-    $moduleinstance->timecreated = time();
-    $moduleinstance->activityid = $moduleinstance->coursemodule;
+    $mindmaap = new \mod_mindmaap\mindmaap(0, $record);
+    $mindmaap->create();
 
-    $id = $DB->insert_record('mindmaap', $moduleinstance);
-
-    return $id;
+    return $mindmaap->get('id');
 }
 
 /**
@@ -93,12 +93,23 @@ function mindmaap_add_instance($moduleinstance, $mform = null) {
  * @return bool True if successful, false otherwise.
  */
 function mindmaap_update_instance($moduleinstance, $mform = null) {
-    global $DB;
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
 
-    return $DB->update_record('mindmaap', $moduleinstance);
+    $record = (object) [
+        'course' => $moduleinstance->course,
+        'name' => $moduleinstance->name,
+        'intro' => $moduleinstance->intro ?? '',
+        'type' => $moduleinstance->type,
+        'introformat' => $moduleinstance->introformat ?? 0,
+    ];
+
+    $mindmaap = new \mod_mindmaap\mindmaap($moduleinstance->instance);
+    $mindmaap->from_record($record);
+
+
+    return $mindmaap->update();
 }
 
 /**
@@ -108,14 +119,13 @@ function mindmaap_update_instance($moduleinstance, $mform = null) {
  * @return bool True if successful, false on failure.
  */
 function mindmaap_delete_instance($id) {
-    global $DB;
 
-    $exists = $DB->get_record('mindmaap', array('id' => $id));
-    if (!$exists) {
+    try {
+        $mindmaap = new \mod_mindmaap\mindmaap($id);
+        $mindmaap->delete();
+    } catch (\Exception $e) {
         return false;
     }
-
-    $DB->delete_records('mindmaap', array('id' => $id));
 
     return true;
 }
