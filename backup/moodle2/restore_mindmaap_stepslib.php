@@ -34,7 +34,7 @@ class restore_mindmaap_activity_structure_step extends restore_activity_structur
 
         $paths[] = new restore_path_element('mindmaap', '/activity/mindmaap');
 
-        // Return the paths wrapped into standard activity structure
+        // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
     }
 
@@ -56,9 +56,6 @@ class restore_mindmaap_activity_structure_step extends restore_activity_structur
             'coursemodule' => $this->task->get_moduleid()
         ];
 
-        // Any changes to the list of dates that needs to be rolled should be same during course restore and course reset.
-        // See MDL-9367.
-
         $id = mindmaap_add_instance($record);
 
         $this->apply_activity_instance($id);
@@ -66,7 +63,7 @@ class restore_mindmaap_activity_structure_step extends restore_activity_structur
 
     protected function after_execute() {
 
-        // Add mindmaap related files
+        // Add mindmaap intro files.
         $this->add_related_files('mod_mindmaap', 'intro', null);
     }
 }

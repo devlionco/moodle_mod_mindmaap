@@ -36,7 +36,7 @@ function xmldb_mindmaap_upgrade($oldversion) {
     global $CFG, $DB;
 
     $dbman = $DB->get_manager();
-    
+
     if ($oldversion < 2019080808) {
         $table = new xmldb_table('mindmaap');
 

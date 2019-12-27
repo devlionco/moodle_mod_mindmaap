@@ -108,7 +108,6 @@ function mindmaap_update_instance($moduleinstance, $mform = null) {
     $mindmaap = new \mod_mindmaap\mindmaap($moduleinstance->instance);
     $mindmaap->from_record($record);
 
-
     return $mindmaap->update();
 }
 
