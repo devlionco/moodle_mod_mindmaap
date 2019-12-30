@@ -33,14 +33,14 @@
             <iframe id="mindmapiframe" src=""></iframe>
             {{#js}}
                 require(['mod_mindmaap/iframe'], function(Main) {
-                    Main.init({{{url}}});
+                    Main.init('{{{url}}}');
                 });
             {{/js}}
         {{/iframe}}
         {{#popup}}
             {{#js}}
                 require(['mod_mindmaap/popup'], function(Main) {
-                Main.init({{{url}}}, {{{name}}});
+                Main.init('{{{url}}}', '{{{name}}}');
                 });
             {{/js}}
             <a href="#" id="mindmaapopen" class="btn btn-primary mindmaapbutton" rel="noopener noreferrer">
