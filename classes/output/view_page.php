@@ -73,7 +73,7 @@ class view_page implements renderable, templatable {
 
         $mindmaap = new api($config->token, $config->url);
 
-// Create mindmaap.
+        // Create mindmaap.
         $user = $mindmaap->registeruser(
             $USER->email,
             $USER->firstname,

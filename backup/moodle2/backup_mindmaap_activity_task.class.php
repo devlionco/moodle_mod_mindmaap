@@ -34,7 +34,7 @@ class backup_mindmaap_activity_task extends backup_activity_task {
      * @return void
      */
     protected function define_my_settings() {
-        // No particular settings for this activity
+        // No particular settings for this activity.
     }
 
     /**
@@ -43,7 +43,7 @@ class backup_mindmaap_activity_task extends backup_activity_task {
      * @return void
      */
     protected function define_my_steps() {
-        // mindmaap only has one structure step
+        // Mindmaap only has one structure step.
         $this->add_step(new backup_mindmaap_activity_structure_step('mindmaap_structure', 'mindmaap.xml'));
     }
 
@@ -58,15 +58,15 @@ class backup_mindmaap_activity_task extends backup_activity_task {
 
         global $CFG;
 
-        $base = preg_quote($CFG->wwwroot,"/");
+        $base = preg_quote($CFG->wwwroot, "/");
 
-        // Link to the list of pages
-        $search="/(".$base."\/mod\/mindmaap\/index.php\?id\=)([0-9]+)/";
-        $content= preg_replace($search, '$@MINDMAAPINDEX*$2@$', $content);
+        // Link to the list of pages.
+        $search = "/(".$base."\/mod\/mindmaap\/index.php\?id\=)([0-9]+)/";
+        $content = preg_replace($search, '$@MINDMAAPINDEX*$2@$', $content);
 
-        // Link to mindmaap view by moduleid
-        $search="/(".$base."\/mod\/mindmaap\/view.php\?id\=)([0-9]+)/";
-        $content= preg_replace($search, '$@MINDMAAPVIEWBYID*$2@$', $content);
+        // Link to mindmaap view by moduleid.
+        $search = "/(".$base."\/mod\/mindmaap\/view.php\?id\=)([0-9]+)/";
+        $content = preg_replace($search, '$@MINDMAAPVIEWBYID*$2@$', $content);
 
         return $content;
     }

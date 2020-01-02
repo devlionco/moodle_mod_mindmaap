@@ -32,7 +32,7 @@ define([
         init: function (url, title) {
             $("#page-mod-mindmaap-view #mindmaapopen").on("click", function () {
                 ModalFactory.create({
-                    type: ModalFactory.types.SAVE_CANCEL,
+                    type: ModalFactory.types.DEFAULT,
                     title: title,
                     body: '<embed class="mindmaap-embed" src=' + url + ' />',
                     large: true

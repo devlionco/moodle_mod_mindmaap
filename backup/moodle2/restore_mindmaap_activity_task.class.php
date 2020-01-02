@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/mod/mindmaap/backup/moodle2/restore_mindmaap_stepslib.php'); // Because it exists (must)
+require_once($CFG->dirroot . '/mod/mindmaap/backup/moodle2/restore_mindmaap_stepslib.php');
 
 class restore_mindmaap_activity_task extends restore_activity_task {
 
@@ -34,7 +34,7 @@ class restore_mindmaap_activity_task extends restore_activity_task {
      * @return void
      */
     protected function define_my_settings() {
-        // No particular settings for this activity
+        // No particular settings for this activity.
     }
 
     /**
@@ -43,7 +43,7 @@ class restore_mindmaap_activity_task extends restore_activity_task {
      * @return void
      */
     protected function define_my_steps() {
-        // Choice only has one structure step
+        // Mindmaap only has one structure step.
         $this->add_step(new restore_mindmaap_activity_structure_step('mindmaap_structure', 'mindmaap.xml'));
     }
 

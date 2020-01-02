@@ -33,7 +33,7 @@ class backup_mindmaap_activity_structure_step extends backup_activity_structure_
 
         // Define each element separated.
         $mindmaap = new backup_nested_element(
-      'mindmaap',
+            'mindmaap',
             ['id'],
             [
                 'name',
@@ -46,13 +46,13 @@ class backup_mindmaap_activity_structure_step extends backup_activity_structure_
             ]
         );
 
-        // Define sources
+        // Define sources.
         $mindmaap->set_source_table('mindmaap', ['id' => backup::VAR_ACTIVITYID]);
 
-        // Define file annotations
-        $mindmaap->annotate_files('mod_mindmaap', 'intro', null); // This file area hasn't itemid
+        // Define file annotations.
+        $mindmaap->annotate_files('mod_mindmaap', 'intro', null);
 
-        // Return the root element (mindmaap), wrapped into standard activity structure
+        // Return the root element (mindmaap), wrapped into standard activity structure.
         return $this->prepare_activity_structure($mindmaap);
     }
 }
