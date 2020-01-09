@@ -128,10 +128,14 @@ class api {
         $response = $curl->post($url, http_build_query($body, '', '&'));
 
         if ($curl->error) {
-            throw new \moodle_exception('curlerror', 'mod_mindmaap', $curl->error);
+            throw new \moodle_exception('curlerror', 'mod_mindmaap', '', $curl->error);
         }
 
         $decoded = json_decode($response, true);
+
+        if ($decoded['status'] == false) {
+            throw new \moodle_exception('curlerror', 'mod_mindmaap', '', $decoded['message']);
+        }
 
         return $decoded;
     }
