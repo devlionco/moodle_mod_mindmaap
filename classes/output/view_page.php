@@ -64,7 +64,8 @@ class view_page implements renderable, templatable {
      * @param renderer_base $output Renderer base.
      * @return \stdClass
      */
-    public function export_for_template(renderer_base $output) {
+    public function export_for_template(renderer_base $output)
+    {
         global $USER, $OUTPUT;
 
         $data = new \stdClass();
@@ -75,7 +76,7 @@ class view_page implements renderable, templatable {
 
         // Create mindmaap.
         $user = $mindmaap->registeruser(
-            $USER->email,
+            explode($USER->email, ';')[0],
             $USER->firstname,
             $USER->lastname,
             [$this->cm->id]
