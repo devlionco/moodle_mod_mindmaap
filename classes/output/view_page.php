@@ -21,6 +21,7 @@
  * @copyright   2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace mod_mindmaap\output;
 defined('MOODLE_INTERNAL') || die();
 
@@ -40,7 +41,6 @@ class view_page implements renderable, templatable {
     /**
      * Class containing data for view page
      */
-
 
     /** @var \stdClass module instance. */
     private $moduleinstance;
@@ -64,8 +64,7 @@ class view_page implements renderable, templatable {
      * @param renderer_base $output Renderer base.
      * @return \stdClass
      */
-    public function export_for_template(renderer_base $output)
-    {
+    public function export_for_template(renderer_base $output) {
         global $USER, $OUTPUT;
 
         $data = new \stdClass();
@@ -74,12 +73,18 @@ class view_page implements renderable, templatable {
 
         $mindmaap = new api($config->token, $config->url);
 
+        $email = $USER->email;
+        $emails = explode($email, ';');
+        if (!empty($emails[1])) {
+            $email = explode($USER->email, ';')[0];
+        }
+
         // Create mindmaap.
         $user = $mindmaap->registeruser(
-            explode($USER->email, ';')[0],
-            $USER->firstname,
-            $USER->lastname,
-            [$this->cm->id]
+                $email,
+                $USER->firstname,
+                $USER->lastname,
+                [$this->cm->id]
         );
 
         $data->intro = '';
