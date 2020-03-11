@@ -26,13 +26,4 @@
     }
 }}
 
-<div class="col-12">
-    <div class="row">
-        <iframe id="mindmapsessioniframe" src="{{{sessionurl}}}" style="width:0px;border:0px;height: 0px;"></iframe>
-        {{#js}}
-            require(['mod_mindmaap/dispatch'], function(Main) {
-                Main.init('{{{type}}}', '{{{url}}}', '{{{name}}}');
-            });
-        {{/js}}
-    </div>
-</div>
+<script> window.location.href="{{{url}}}"; </script>

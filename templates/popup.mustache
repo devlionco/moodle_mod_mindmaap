@@ -26,13 +26,11 @@
     }
 }}
 
-<div class="col-12">
-    <div class="row">
-        <iframe id="mindmapsessioniframe" src="{{{sessionurl}}}" style="width:0px;border:0px;height: 0px;"></iframe>
-        {{#js}}
-            require(['mod_mindmaap/dispatch'], function(Main) {
-                Main.init('{{{type}}}', '{{{url}}}', '{{{name}}}');
-            });
-        {{/js}}
-    </div>
-</div>
+<a href="#" id="mindmaapopen" class="btn btn-primary mindmaapbutton" rel="noopener noreferrer">
+    {{#str}}openpopup, mod_mindmaap{{/str}}
+</a>
+{{#js}}
+    require(['mod_mindmaap/popup'], function(Main) {
+    Main.init('{{{url}}}', '{{{name}}}');
+    });
+{{/js}}

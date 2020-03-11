@@ -92,9 +92,7 @@ class view_page implements renderable, templatable {
         $url = $user['url'] . "&lang=" . current_language();
         $sessionurl = $mindmaap->getsessionurl($user['url_param'], $user['mindmap']['token']);
 
-        $type = $this->moduleinstance->type;
-
-        $data->$type = true;
+        $data->type = $this->moduleinstance->type;
         $data->url = $url;
         $data->sessionurl = $sessionurl;
         $data->name = format_string($this->moduleinstance->name);

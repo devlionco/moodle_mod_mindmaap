@@ -14,22 +14,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * iframe js
+ * dispatch js
  *
  * @package    mod_mindmaap
- * @copyright   2019 Devlion <info@devlion.co>
+ * @copyright   2020 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define([
     "jquery",
-], function ($) {
+    "core/templates"
+], function ($, Templates) {
     "use strict";
-
     return {
-        init: function (url) {
-            $(document).ready(function () {
-                $('#mindmapiframe').attr('src', url);
+        init: function (type, url, title) {
+            $('#mindmapsessioniframe').ready(function() {
+                let element = $('#mindmapsessioniframe');
+
+                Templates.render('mod_mindmaap/' + type, {url:url, name:title}).done(function(html, js) {
+                    element.after(html);
+                    Templates.runTemplateJS(js);
+                });
             });
         }
     };
