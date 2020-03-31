@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_mindmaap';
 $plugin->release = '0.1.0';
-$plugin->version = 2019080813;
+$plugin->version = 2019080814;
 $plugin->requires = 2018120300;
 $plugin->maturity = MATURITY_ALPHA;
