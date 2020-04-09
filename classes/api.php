@@ -45,13 +45,14 @@ class api {
      *
      * @return array
      */
-    public function createpage(string $name, string $description, array $additionaldata = []) {
+    public function createpage(string $name, string $description, array $additionaldata = [], array $copyfrom = []) {
         $response = $this->request(
-            $this->baseurl . 'mindmap/create',
+                $this->baseurl . 'mindmap/create',
                 [
-                    'name' => $name,
-                    'description' => $description,
-                    'additional_data' => $additionaldata
+                        'name' => $name,
+                        'description' => $description,
+                        'additional_data' => $additionaldata,
+                        'copy_from' => $copyfrom
                 ]
         );
 
@@ -72,10 +73,10 @@ class api {
         $response = $this->request(
                 $this->baseurl . 'users/register',
                 [
-                    'email' => $email,
-                    'first_name' => static::slug($firstname),
-                    'last_name' => $lastname,
-                    'additional_data' => $additionaldata
+                        'email' => $email,
+                        'first_name' => static::slug($firstname),
+                        'last_name' => $lastname,
+                        'additional_data' => $additionaldata
                 ]
         );
 
@@ -118,9 +119,9 @@ class api {
         $curl = new \curl();
 
         $headers = [
-            "Authorization: Bearer {$this->getcustomertoken()}",
-            'Accept: application/json',
-            'Content-Type: application/x-www-form-urlencoded',
+                "Authorization: Bearer {$this->getcustomertoken()}",
+                'Accept: application/json',
+                'Content-Type: application/x-www-form-urlencoded',
         ];
 
         $curl->setHeader($headers);

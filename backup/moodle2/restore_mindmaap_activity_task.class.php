@@ -110,4 +110,13 @@ class restore_mindmaap_activity_task extends restore_activity_task {
 
         return $rules;
     }
+
+    /**
+     * Getter to get old module id .
+     *
+     * @return int
+     */
+    public function get_old_moduleid() {
+        return $this->oldmoduleid;
+    }
 }

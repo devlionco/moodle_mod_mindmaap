@@ -40,6 +40,7 @@ class restore_mindmaap_activity_structure_step extends restore_activity_structur
 
     /**
      * Process mindmaap information
+     *
      * @param array $data information
      */
     protected function process_mindmaap($data) {
@@ -48,12 +49,13 @@ class restore_mindmaap_activity_structure_step extends restore_activity_structur
         require_once($CFG->dirroot . '/mod/mindmaap/lib.php');
 
         $record = (object) [
-            'course' => $this->get_courseid(),
-            'name' => $data['name'],
-            'intro' => $data['intro'],
-            'type' => $data['type'],
-            'introformat' => $data['introformat'],
-            'coursemodule' => $this->task->get_moduleid()
+                'course' => $this->get_courseid(),
+                'name' => $data['name'],
+                'intro' => $data['intro'],
+                'type' => $data['type'],
+                'introformat' => $data['introformat'],
+                'coursemodule' => $this->task->get_moduleid(),
+                'oldmoduleid' => $this->task->get_old_moduleid()
         ];
 
         $id = mindmaap_add_instance($record);
