@@ -36,7 +36,7 @@ function mindmaap_supports($feature) {
     switch ($feature) {
         case FEATURE_MOD_INTRO:
         case FEATURE_BACKUP_MOODLE2:
-        return true;
+            return true;
         default:
             return null;
     }
@@ -65,15 +65,20 @@ function mindmaap_add_instance($moduleinstance, $mform = null) {
             'additional_data' => [$moduleinstance->coursemodule],
     ];
 
+    $oldmoduleid = [];
+    if (!empty($moduleinstance->oldmoduleid)) {
+        $oldmoduleid = [$moduleinstance->oldmoduleid];
+    }
+
     // Create mindmaap.
-    $api->createpage($data['name'], $data['description'], $data['additional_data']);
+    $api->createpage($data['name'], $data['description'], $data['additional_data'], $oldmoduleid);
 
     $record = (object) [
-        'course' => $moduleinstance->course,
-        'name' => $moduleinstance->name,
-        'type' => $moduleinstance->type,
-        'intro' => $moduleinstance->intro ?? '',
-        'introformat' => $moduleinstance->introformat ?? 0,
+            'course' => $moduleinstance->course,
+            'name' => $moduleinstance->name,
+            'type' => $moduleinstance->type,
+            'intro' => $moduleinstance->intro ?? '',
+            'introformat' => $moduleinstance->introformat ?? 0,
     ];
 
     $mindmaap = new \mod_mindmaap\mindmaap(0, $record);
@@ -98,11 +103,11 @@ function mindmaap_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->id = $moduleinstance->instance;
 
     $record = (object) [
-        'course' => $moduleinstance->course,
-        'name' => $moduleinstance->name,
-        'intro' => $moduleinstance->intro ?? '',
-        'type' => $moduleinstance->type,
-        'introformat' => $moduleinstance->introformat ?? 0,
+            'course' => $moduleinstance->course,
+            'name' => $moduleinstance->name,
+            'intro' => $moduleinstance->intro ?? '',
+            'type' => $moduleinstance->type,
+            'introformat' => $moduleinstance->introformat ?? 0,
     ];
 
     $mindmaap = new \mod_mindmaap\mindmaap($moduleinstance->instance);
