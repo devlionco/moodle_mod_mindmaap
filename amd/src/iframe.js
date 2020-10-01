@@ -23,12 +23,12 @@
 
 define([
     "jquery",
-], function ($) {
+], function($) {
     "use strict";
 
     return {
-        init: function (url) {
-            $(document).ready(function () {
+        init: function(url) {
+            $(document).ready(function() {
                 $('#mindmapiframe').attr('src', url);
             });
         }

@@ -25,6 +25,9 @@
 require(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/lib.php');
 
+use \mod_mindmaap\event\course_module_viewed;
+use \mod_mindmaap\output\view_page;
+
 // Course_module ID, or.
 $id = optional_param('id', 0, PARAM_INT);
 
@@ -36,7 +39,7 @@ if ($id) {
     $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
     $moduleinstance = $DB->get_record('mindmaap', array('id' => $cm->instance), '*', MUST_EXIST);
 } else if ($m) {
-    $moduleinstance = $DB->get_record('mindmaap', array('id' => $n), '*', MUST_EXIST);
+    $moduleinstance = $DB->get_record('mindmaap', array('id' => $m), '*', MUST_EXIST);
     $course = $DB->get_record('course', array('id' => $moduleinstance->course), '*', MUST_EXIST);
     $cm = get_coursemodule_from_instance('mindmaap', $moduleinstance->id, $course->id, false, MUST_EXIST);
 } else {
@@ -47,7 +50,7 @@ require_login($course, true, $cm);
 
 $modulecontext = context_module::instance($cm->id);
 
-$event = \mod_mindmaap\event\course_module_viewed::create(array(
+$event = course_module_viewed::create(array(
         'objectid' => $moduleinstance->id,
         'context' => $modulecontext,
 ));
@@ -64,7 +67,7 @@ $PAGE->requires->css('/mod/mindmaap/css/styles.css');
 echo $OUTPUT->header();
 
 $output = $PAGE->get_renderer('mod_mindmaap');
-$page = new \mod_mindmaap\output\view_page($moduleinstance, $cm);
+$page = new view_page($moduleinstance, $cm);
 echo $output->render($page);
 
 echo $OUTPUT->footer();

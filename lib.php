@@ -25,6 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 use \mod_mindmaap\api;
+use \mod_mindmaap\mindmaap;
+use \Exception;
 
 /**
  * Return if the plugin supports $feature.
@@ -81,7 +83,7 @@ function mindmaap_add_instance($moduleinstance, $mform = null) {
             'introformat' => $moduleinstance->introformat ?? 0,
     ];
 
-    $mindmaap = new \mod_mindmaap\mindmaap(0, $record);
+    $mindmaap = new mindmaap(0, $record);
     $mindmaap->create();
 
     return $mindmaap->get('id');
@@ -110,7 +112,7 @@ function mindmaap_update_instance($moduleinstance, $mform = null) {
             'introformat' => $moduleinstance->introformat ?? 0,
     ];
 
-    $mindmaap = new \mod_mindmaap\mindmaap($moduleinstance->instance);
+    $mindmaap = new mindmaap($moduleinstance->instance);
     $mindmaap->from_record($record);
 
     return $mindmaap->update();
@@ -125,9 +127,9 @@ function mindmaap_update_instance($moduleinstance, $mform = null) {
 function mindmaap_delete_instance($id) {
 
     try {
-        $mindmaap = new \mod_mindmaap\mindmaap($id);
+        $mindmaap = new mindmaap($id);
         $mindmaap->delete();
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         return false;
     }
 

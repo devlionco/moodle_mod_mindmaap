@@ -24,9 +24,11 @@
 
 namespace mod_mindmaap;
 
+use \core\persistent;
+
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
-class mindmaap extends \core\persistent
+class mindmaap extends persistent
 {
     const TABLE = 'mindmaap';
 

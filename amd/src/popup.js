@@ -25,21 +25,20 @@ define([
     "jquery",
     "core/modal_factory",
     "core/modal_events",
-], function ($, ModalFactory, ModalEvents) {
+], function($, ModalFactory, ModalEvents) {
     "use strict";
 
     return {
-        init: function (url, title) {
-            $("#page-mod-mindmaap-view #mindmaapopen").on("click", function () {
+        init: function(url, title) {
+            $("#page-mod-mindmaap-view #mindmaapopen").on("click", function() {
                 ModalFactory.create({
                     type: ModalFactory.types.DEFAULT,
                     title: title,
                     body: '<embed class="mindmaap-embed" src=' + url + ' />',
                     large: true
-                }).then(function (modal) {
+                }).then(function(modal) {
                     var root = modal.getRoot();
-                    root.on(ModalEvents.save, function () {
-                    });
+                    root.on(ModalEvents.save, function() {});
                     modal.show();
                 });
 
