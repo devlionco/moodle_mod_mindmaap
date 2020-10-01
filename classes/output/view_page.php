@@ -28,6 +28,7 @@ use renderable;
 use templatable;
 use renderer_base;
 use mod_mindmaap\api;
+use \stdClass;
 
 /**
  * Class containing data for view page
@@ -42,16 +43,16 @@ class view_page implements renderable, templatable {
      */
 
 
-    /** @var \stdClass module instance. */
+    /** @var stdClass module instance. */
     private $moduleinstance;
 
-    /** @var \stdClass course module. */
+    /** @var stdClass course module. */
     private $cm;
 
     /**
      * Construct this renderable.
      *
-     * @param \stdClass activity id
+     * @param stdClass activity id
      */
     public function __construct($moduleinstance, $cm) {
         $this->moduleinstance = $moduleinstance;
@@ -62,12 +63,12 @@ class view_page implements renderable, templatable {
      * Export this data so it can be used as the context for a mustache template.
      *
      * @param renderer_base $output Renderer base.
-     * @return \stdClass
+     * @return stdClass
      */
     public function export_for_template(renderer_base $output) {
         global $USER, $OUTPUT;
 
-        $data = new \stdClass();
+        $data = new stdClass();
 
         $config = get_config('mod_mindmaap');
 
