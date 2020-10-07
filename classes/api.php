@@ -70,13 +70,36 @@ class api {
      * @return array
      */
     public function registeruser(string $email, string $firstname, string $lastname, array $additionaldata = []) {
+        GLOBAL $COURSE, $USER;
+
+        $role = 5; //student
+        if (!empty($COURSE->id)) {
+            $context = \context_course::instance($COURSE->id);
+            $courseroles = get_user_roles($context, $USER->id, true);
+            foreach ($courseroles as $courserole) {
+                if ($courserole->shortname=='editingteacher'){
+                    $role = 3;
+                    break;
+                }
+                if ($courserole->shortname=='teacher'){
+                    $role = 4;
+                    break;
+                }
+            }
+        }
+
+        if (is_siteadmin()){
+            $role = 2;
+        }
+
         $response = $this->request(
                 $this->baseurl . 'users/register',
                 [
                         'email' => $email,
                         'first_name' => static::slug($firstname),
                         'last_name' => $lastname,
-                        'additional_data' => $additionaldata
+                        'additional_data' => $additionaldata,
+                        'role' => $role
                 ]
         );
 
