@@ -1,6 +1,6 @@
 # Mind Maap Moodle plugin #
 
-Version 3.6,3.7 release 1 - 2019.08.10
+Version 3.6,3.7,3.9,3.11 release 1 - 2019.08.10
 
 The "master" branch is no longer compatible with Moodle 3.6 or latter.
 
