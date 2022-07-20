@@ -35,19 +35,19 @@ $string['type'] = 'סוג';
 $string['pluginadministration'] = 'ניהול מפות חשיבה';
 
 $string['mindmaap_token'] = 'אסימון לשירות מפות חשיבה';
-$string['mindmaap_token_desc'] = 'לקבל גישות נא לגלוש באתר <a href="https://mindmaap.com">MindMaap</a>';
+$string['mindmaap_token_desc'] = 'לקבלת גישות נא לגלוש באתר <a href="https://mindmaap.com">MindMaap</a>';
 $string['mindmaap_url'] = 'קישור לשירות מפות חשיבה';
-$string['mindmaap_url_desc'] = 'לקבל גישות נא לגלוש באתר<a href="https://mindmaap.com">MindMaap</a>';
+$string['mindmaap_url_desc'] = 'לקבלת גישות נא לגלוש באתר<a href="https://mindmaap.com">MindMaap</a>';
 
-$string['openpopup'] = 'התחל';
-$string['newwindow'] = 'התחל';
-$string['directlink'] = 'התחל';
+$string['openpopup'] = 'הצגת מפת חשיבה';
+$string['newwindow'] = 'הצגת מפת חשיבה';
+$string['directlink'] = 'הצגת מפת חשיבה';
 $string['modulenameplural'] = 'mindmaaps';
 
-$string['type_iframe'] = 'בתוך הקורס';
+$string['type_iframe'] = 'משובץ בעמוד הקורס';
 $string['type_window'] = 'חלון חדש';
 $string['type_popup'] = 'חלון צף';
 $string['type_link'] = 'קישור';
 
-$string['mindmaap:addinstance'] = 'פפות חשיבה להוסיף רכיב';
-$string['mindmaap:view'] = 'מפות חשיבה לראות';
+$string['mindmaap:addinstance'] = 'להוסיף פעילות מפת חשיבה';
+$string['mindmaap:view'] = 'לצפות בפעילות מפת חשיבה';
